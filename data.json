@@ -1,0 +1,48 @@
+[
+  {
+    "username": "TechnoGod",
+    "scores": {
+      "raw_pvp_skill": 98,
+      "building": 45,
+      "speedrunning": 92,
+      "boat_racing": 88,
+      "redstone": 30,
+      "game_sense": 96,
+      "penance_score": 1200
+    }
+  },
+  {
+    "username": "RedstoneGuru",
+    "scores": {
+      "raw_pvp_skill": 30,
+      "building": 82,
+      "speedrunning": 40,
+      "boat_racing": 50,
+      "redstone": 100,
+      "game_sense": 85
+    }
+  },
+  {
+    "username": "SpeedyGonzales",
+    "scores": {
+      "raw_pvp_skill": 70,
+      "building": 20,
+      "speedrunning": 99,
+      "boat_racing": 91,
+      "redstone": 10,
+      "game_sense": 78,
+      "penance_score": 450
+    }
+  },
+  {
+    "username": "BuilderBob",
+    "scores": {
+      "raw_pvp_skill": 40,
+      "building": 97,
+      "speedrunning": 30,
+      "boat_racing": 25,
+      "redstone": 60,
+      "game_sense": 65
+    }
+  }
+]

@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    font-family: monospace, sans-serif;
+}
+
+:root {
+    --bg: #0a0a0a;
+    --panel: #141414;
+    --border: #333333;
+    --text: #ffffff;
+    --text-dim: #888888;
+    --btn: #222222;
+    --btn-hover: #eeeeee;
+    --btn-hover-text: #000000;
+}
+
+[data-theme="light"] {
+    --bg: #f0f0f0;
+    --panel: #ffffff;
+    --border: #cccccc;
+    --text: #000000;
+    --text-dim: #555555;
+    --btn: #dddddd;
+    --btn-hover: #111111;
+    --btn-hover-text: #ffffff;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    background: var(--panel);
+    border-bottom: 2px solid var(--border);
+    padding: 1rem 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.btn {
+    background: var(--btn);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
+    color: var(--btn-hover-text);
+}
+
+.btn-remove {
+    background: #ff3333;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-remove:hover {
+    background: #cc0000;
+    color: #ffffff;
+}
+
+.nav {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-scroll {
+    display: flex;
+    overflow-x: auto;
+}
+
+.nav-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    border-right: 1px solid var(--border);
+    padding: 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nav-btn.active, .nav-btn:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.main-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 0.5rem;
+}
+
+.search-container {
+    margin-bottom: 1.5rem;
+}
+
+#search-input {
+    width: 100%;
+    padding: 1rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#search-input:focus {
+    border-color: var(--text);
+    outline: none;
+}
+
+.list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.list-row {
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    cursor: pointer;
+    transition: border-color 0.1s ease;
+}
+
+.list-row:hover {
+    border-color: var(--text);
+}
+
+.list-rank {
+    width: 60px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-dim);
+}
+
+.list-name {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.list-score {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: var(--bg);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+}
+
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-window {
+    background: var(--bg);
+    border: 2px solid var(--border);
+    width: 100%;
+    max-width: 500px;
+    padding: 1.5rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+}
+
+.stat-name {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+.stat-val {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

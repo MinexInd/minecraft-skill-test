@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft-SkillTest</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <h1>Minecraft-SkillTest</h1>
+            <button id="theme-btn" class="btn">Light Theme</button>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container nav-scroll">
+            <button class="nav-btn active" data-cat="overall">Overall Skill</button>
+            <button class="nav-btn" data-cat="raw_pvp_skill">Raw PvP Skill</button>
+            <button class="nav-btn" data-cat="building">Building</button>
+            <button class="nav-btn" data-cat="speedrunning">Speedrunning</button>
+            <button class="nav-btn" data-cat="boat_racing">Boat Racing</button>
+            <button class="nav-btn" data-cat="redstone">Redstone</button>
+            <button class="nav-btn" data-cat="game_sense">Game Sense</button>
+            <button class="nav-btn" data-cat="penance_score">Penance Score</button>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <div class="title-bar">
+            <h2 id="view-title">Overall Skill</h2>
+            <span id="player-count">Loading...</span>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="SEARCH PLAYER BY NAME..." autocomplete="off">
+        </div>
+
+        <div id="list-container" class="list-wrapper"></div>
+    </main>
+
+    <div id="modal" class="modal-bg" style="display: none;">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2 id="modal-name">Player Name</h2>
+                <button id="modal-remove" class="btn btn-remove">Remove</button>
+            </div>
+            <div id="modal-stats" class="modal-grid"></div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
