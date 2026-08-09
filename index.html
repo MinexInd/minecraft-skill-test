@@ -1,55 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft-SkillTest</title>
-    <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Skill Test — Batch Leaderboard</title>
+  <meta name="description" content="Open Minecraft skill-test batch leaderboard. Players ranked by equalized scores across six tested skills.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container header-flex">
-            <h1>Minecraft-SkillTest</h1>
-            <button id="theme-btn" class="btn">Light Theme</button>
-        </div>
-    </header>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <nav class="nav">
-        <div class="container nav-scroll">
-            <button class="nav-btn active" data-cat="overall">Overall Skill</button>
-            <button class="nav-btn" data-cat="raw_pvp_skill">Raw PvP Skill</button>
-            <button class="nav-btn" data-cat="building">Building</button>
-            <button class="nav-btn" data-cat="speedrunning">Speedrunning</button>
-            <button class="nav-btn" data-cat="boat_racing">Boat Racing</button>
-            <button class="nav-btn" data-cat="redstone">Redstone</button>
-            <button class="nav-btn" data-cat="game_sense">Game Sense</button>
-            <button class="nav-btn" data-cat="penance_score">Penance Score</button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-block" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>SKILL TEST</h1>
+          <p class="brand-sub">Minecraft Batch Leaderboard</p>
         </div>
-    </nav>
+      </div>
+      <button id="theme-btn" class="pixel-btn theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+        <span class="theme-label">PLAINS</span>
+      </button>
+    </div>
+  </header>
 
-    <main class="container main-content">
-        <div class="title-bar">
-            <h2 id="view-title">Overall Skill</h2>
-            <span id="player-count">Loading...</span>
-        </div>
-        
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="SEARCH PLAYER BY NAME..." autocomplete="off">
-        </div>
+  <nav class="cat-nav" aria-label="Skill categories">
+    <div class="container cat-scroll" id="cat-tabs"></div>
+  </nav>
 
-        <div id="list-container" class="list-wrapper"></div>
-    </main>
+  <main class="container main">
+    <section class="board-head">
+      <div>
+        <h2 id="view-title">Overall Skill</h2>
+        <p id="view-desc" class="view-desc"></p>
+      </div>
+      <div class="board-meta">
+        <span id="player-count" class="count-pill">—</span>
+      </div>
+    </section>
 
-    <div id="modal" class="modal-bg" style="display: none;">
-        <div class="modal-window">
-            <div class="modal-header">
-                <h2 id="modal-name">Player Name</h2>
-                <button id="modal-remove" class="btn btn-remove">Remove</button>
-            </div>
-            <div id="modal-stats" class="modal-grid"></div>
-        </div>
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true"></span>
+      <input type="search" id="search-input" placeholder="Search player by name…" autocomplete="off" aria-label="Search players">
     </div>
 
-    <script src="./app.js"></script>
+    <ol id="list-container" class="rank-list" aria-live="polite"></ol>
+
+    <p id="empty-state" class="empty-state" hidden>No players match that name.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="legend">
+        <span class="legend-title">Skill Equalization</span>
+        <span class="badge badge-pc">PC · 1.00×</span>
+        <span class="badge badge-kbm">Pojav KBM · 1.02×</span>
+        <span class="badge badge-touch">Pojav Touch · 1.08×</span>
+      </div>
+      <p class="footer-note">One open batch · mini-batches of 10 · 6 skills tested · Penance is a separate kit 1v1 ladder.</p>
+    </div>
+  </footer>
+
+  <div id="modal" class="modal-bg" hidden>
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <div class="modal-header">
+        <div class="modal-id">
+          <img id="modal-head" class="modal-head" alt="" width="48" height="48" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3C/svg%3E">
+          <div>
+            <h3 id="modal-name">Player</h3>
+            <span id="modal-platform" class="badge"></span>
+          </div>
+        </div>
+        <button id="modal-close" class="pixel-btn modal-close" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-overall">
+        <span class="modal-overall-label">Overall Skill</span>
+        <span id="modal-overall" class="modal-overall-val">0</span>
+      </div>
+      <div id="modal-stats" class="stat-grid"></div>
+      <div id="modal-penance" class="penance-row" hidden>
+        <span class="penance-label">⚔ Penance Score</span>
+        <span id="modal-penance-val" class="penance-val">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>
