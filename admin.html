@@ -52,6 +52,17 @@
 
     .empty-msg { text-align: center; color: var(--text-dim); font-family: var(--font-pixel); font-size: 0.65rem; padding: 2rem; }
     .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--grass); color: #0d0f12; font-family: var(--font-pixel); font-size: 0.6rem; padding: 0.8rem 1.2rem; border: 2px solid var(--grass-dk); z-index: 100; animation: rise 0.3s ease both; }
+
+    /* Drop zone */
+    .drop-zone { border: 3px dashed var(--line-dark); background: var(--slot); margin-bottom: 1.4rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .drop-zone.over { border-color: var(--grass); background: var(--slot-2); }
+    .drop-inner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem 1rem; text-align: center; }
+    .drop-icon { width: 36px; height: 36px; background: var(--text-dim); clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%); opacity: 0.5; }
+    .drop-text { font-size: 0.9rem; color: var(--text); margin: 0; }
+    .drop-sub { font-size: 0.75rem; color: var(--text-dim); margin: 0; }
+
+    /* Skin preview in table */
+    .skin-thumb { width: 28px; height: 28px; image-rendering: pixelated; border: 1px solid var(--line-dark); vertical-align: middle; margin-right: 0.3rem; background: var(--slot-2); }
   </style>
 </head>
 <body>
@@ -88,6 +99,16 @@
       </div>
     </section>
 
+    <!-- Drop zone -->
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-inner">
+        <span class="drop-icon" aria-hidden="true"></span>
+        <p class="drop-text">Drag & drop <strong>data.json</strong> here to load players</p>
+        <p class="drop-sub">or click to browse</p>
+        <input type="file" id="file-input" accept=".json" hidden>
+      </div>
+    </div>
+
     <!-- Add / Edit form -->
     <div class="form-card" id="form-card">
       <div class="form-title" id="form-title">ADD PLAYER</div>
@@ -119,6 +140,10 @@
           <div class="field">
             <label for="f-penance">Penance Score (optional)</label>
             <input type="number" id="f-penance" min="0" placeholder="Leave empty if none">
+          </div>
+          <div class="field">
+            <label for="f-skin">Skin URL (optional)</label>
+            <input type="url" id="f-skin" placeholder="Leave empty = auto from username">
           </div>
         </div>
         <div class="form-actions">

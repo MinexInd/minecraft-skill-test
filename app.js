@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pojav_touch: "Pojav Touch · 1.08×"
   };
   const PLATFORM_CLASS = { pc: "badge-pc", pojav_kbm: "badge-kbm", pojav_touch: "badge-touch" };
+  const SKIN_CACHE_KEY = "mst-skin-cache";
 
   const defaultData = [
     { username: "EnderSlayer", platform: "pc", scores: { raw_pvp: 96, building: 52, redstone: 38, ice_boat: 84, trap_box: 90, ffa_br: 94 }, penance: 1280 },
@@ -97,7 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
         raw: p.scores,
         eq,
         overall: Math.round(sum / SKILLS.length),
-        penance: typeof p.penance === "number" ? p.penance : null
+        penance: typeof p.penance === "number" ? p.penance : null,
+        skin: p.skin || ""
       };
     });
     renderTabs();
@@ -122,24 +124,55 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", () => {
         currentCat = cat.key;
         renderTabs();
-        render();
+    players.forEach(p => cacheSkin(p.username, p.skin));
+    render();
       });
       dom.catTabs.appendChild(btn);
     });
   }
 
+  /* ---------- Skin cache ---------- */
+  function getSkinCache() {
+    try { return JSON.parse(localStorage.getItem(SKIN_CACHE_KEY) || "{}"); } catch { return {}; }
+  }
+  function setSkinCache(cache) {
+    try { localStorage.setItem(SKIN_CACHE_KEY, JSON.stringify(cache)); } catch {}
+  }
+  function skinUrl(username, customSkin) {
+    if (customSkin) return customSkin;
+    return "https://mc-heads.net/avatar/" + encodeURIComponent(username) + "/48";
+  }
+  function cacheSkin(username, customSkin) {
+    const url = skinUrl(username, customSkin);
+    const cache = getSkinCache();
+    if (cache[username]) return;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        const c = document.createElement("canvas");
+        c.width = img.naturalWidth; c.height = img.naturalHeight;
+        c.getContext("2d").drawImage(img, 0, 0);
+        cache[username] = c.toDataURL("image/png");
+        setSkinCache(cache);
+      } catch {}
+    };
+    img.src = url;
+  }
+
   /* ---------- Avatar ---------- */
-  function buildAvatar(username) {
+  function buildAvatar(player) {
     const img = document.createElement("img");
     img.className = "avatar";
     img.width = 48; img.height = 48;
-    img.alt = username + " skin";
+    img.alt = player.username + " skin";
     img.loading = "lazy";
-    img.src = `https://mc-heads.net/avatar/${encodeURIComponent(username)}/48`;
+    const cached = getSkinCache()[player.username];
+    img.src = cached || skinUrl(player.username, player.skin);
     img.addEventListener("error", () => {
       const fb = document.createElement("div");
       fb.className = "avatar avatar-fallback";
-      fb.textContent = username.slice(0, 2).toUpperCase();
+      fb.textContent = player.username.slice(0, 2).toUpperCase();
       img.replaceWith(fb);
     });
     return img;
@@ -210,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scoreWrap.appendChild(num);
 
       row.appendChild(rank);
-      row.appendChild(buildAvatar(item.player.username));
+      row.appendChild(buildAvatar(item.player));
       row.appendChild(main);
       row.appendChild(scoreWrap);
 
@@ -228,7 +261,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Modal ---------- */
   function openModal(p) {
     dom.modalName.textContent = p.username;
-    dom.modalHead.src = `https://mc-heads.net/avatar/${encodeURIComponent(p.username)}/48`;
+    const cached = getSkinCache()[p.username];
+    dom.modalHead.src = cached || skinUrl(p.username, p.skin);
     dom.modalHead.alt = p.username + " skin";
     dom.modalPlatform.className = "badge " + PLATFORM_CLASS[p.platform];
     dom.modalPlatform.textContent = PLATFORM_LABEL[p.platform];

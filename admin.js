@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const SKILLS = ["raw_pvp", "building", "redstone", "ice_boat", "trap_box", "ffa_br"];
   const PLATFORM_LABEL = { pc: "PC · 1.00x", pojav_kbm: "Pojav KBM · 1.02x", pojav_touch: "Pojav Touch · 1.08x" };
   const PLATFORM_CLASS = { pc: "badge-pc", pojav_kbm: "badge-kbm", pojav_touch: "badge-touch" };
+  const SKIN_CACHE_KEY = "mst-skin-cache";
 
   const defaultData = [
     { username: "EnderSlayer", platform: "pc", scores: { raw_pvp: 96, building: 52, redstone: 38, ice_boat: 84, trap_box: 90, ffa_br: 94 }, penance: 1280 },
@@ -36,7 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     resetBtn: document.getElementById("btn-reset"),
     themeBtn: document.getElementById("theme-btn"),
     themeLabel: document.querySelector(".theme-label"),
-    canvas: document.getElementById("bg-canvas")
+    canvas: document.getElementById("bg-canvas"),
+    dropZone: document.getElementById("drop-zone"),
+    fileInput: document.getElementById("file-input")
   };
 
   /* Theme */
@@ -82,6 +85,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   initBackground();
 
+  /* Skin cache */
+  function getSkinCache() {
+    try { return JSON.parse(localStorage.getItem(SKIN_CACHE_KEY) || "{}"); } catch { return {}; }
+  }
+  function setSkinCache(cache) {
+    try { localStorage.setItem(SKIN_CACHE_KEY, JSON.stringify(cache)); } catch {}
+  }
+  function skinUrl(username, customSkin) {
+    if (customSkin) return customSkin;
+    return "https://mc-heads.net/avatar/" + encodeURIComponent(username) + "/48";
+  }
+  function cacheSkin(username, customSkin) {
+    const url = skinUrl(username, customSkin);
+    const cache = getSkinCache();
+    if (cache[username]) return;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        const c = document.createElement("canvas");
+        c.width = img.naturalWidth; c.height = img.naturalHeight;
+        c.getContext("2d").drawImage(img, 0, 0);
+        cache[username] = c.toDataURL("image/png");
+        setSkinCache(cache);
+      } catch {}
+    };
+    img.src = url;
+  }
+  function getCachedSkin(username) {
+    const cache = getSkinCache();
+    return cache[username] || null;
+  }
+
+  /* Drag and drop */
+  dom.dropZone.addEventListener("click", () => dom.fileInput.click());
+  dom.fileInput.addEventListener("change", e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+  dom.dropZone.addEventListener("dragover", e => { e.preventDefault(); dom.dropZone.classList.add("over"); });
+  dom.dropZone.addEventListener("dragleave", () => dom.dropZone.classList.remove("over"));
+  dom.dropZone.addEventListener("drop", e => {
+    e.preventDefault();
+    dom.dropZone.classList.remove("over");
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+
+  function loadFile(file) {
+    if (!file.name.endsWith(".json")) { toast("Only .json files accepted"); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        if (!Array.isArray(data)) { toast("JSON must be an array of players"); return; }
+        loadData(data);
+        toast("Loaded " + players.length + " players from " + file.name);
+      } catch { toast("Invalid JSON file"); }
+    };
+    reader.readAsText(file);
+  }
+
   /* Load data */
   function loadData(data) {
     players = data.map(p => ({
@@ -95,8 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
         trap_box: p.scores?.trap_box ?? 0,
         ffa_br: p.scores?.ffa_br ?? 0
       },
-      penance: typeof p.penance === "number" ? p.penance : null
+      penance: typeof p.penance === "number" ? p.penance : null,
+      skin: p.skin || ""
     }));
+    players.forEach(p => cacheSkin(p.username, p.skin));
     render();
   }
 
@@ -109,9 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
     players.forEach((p, i) => {
       const tr = document.createElement("tr");
       const penStr = p.penance !== null ? p.penance : "—";
+      const cached = getCachedSkin(p.username);
+      const src = cached || skinUrl(p.username, p.skin);
       tr.innerHTML =
         `<td class="score-cell">${i + 1}</td>` +
-        `<td class="uname">${esc(p.username)}</td>` +
+        `<td class="uname"><img class="skin-thumb" src="${esc(src)}" alt="" onerror="this.style.display='none'">${esc(p.username)}</td>` +
         `<td><span class="badge ${PLATFORM_CLASS[p.platform]}">${PLATFORM_LABEL[p.platform]}</span></td>` +
         `<td class="score-cell">${p.scores.raw_pvp}</td>` +
         `<td class="score-cell">${p.scores.building}</td>` +
@@ -143,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("f-platform").value = p.platform;
     SKILLS.forEach(s => { document.getElementById("f-" + s).value = p.scores[s]; });
     document.getElementById("f-penance").value = p.penance ?? "";
+    document.getElementById("f-skin").value = p.skin || "";
     dom.editIndex.value = i;
     dom.formTitle.textContent = "EDIT PLAYER";
     dom.submitBtn.textContent = "SAVE CHANGES";
@@ -166,8 +233,9 @@ document.addEventListener("DOMContentLoaded", () => {
     SKILLS.forEach(s => { scores[s] = Math.max(0, Math.min(100, parseInt(document.getElementById("f-" + s).value, 10) || 0)); });
     const penVal = document.getElementById("f-penance").value;
     const penance = penVal !== "" ? Math.max(0, parseInt(penVal, 10) || 0) : null;
+    const skin = document.getElementById("f-skin").value.trim();
 
-    const obj = { username, platform, scores, penance };
+    const obj = { username, platform, scores, penance, skin };
     const idx = parseInt(dom.editIndex.value, 10);
 
     if (idx >= 0 && idx < players.length) {
@@ -177,6 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       players.push(obj);
       toast("Player added");
     }
+    cacheSkin(username, skin);
     resetForm();
     render();
   });
