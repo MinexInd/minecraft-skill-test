@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try { localStorage.setItem(SKIN_CACHE_KEY, JSON.stringify(cache)); } catch {}
   }
   function skinUrl(username, customSkin) {
-    if (customSkin) return customSkin;
-    return "https://mc-heads.net/avatar/" + encodeURIComponent(username) + "/48";
+    const name = customSkin || username;
+    return "https://mc-heads.net/avatar/" + encodeURIComponent(name) + "/48";
   }
   function cacheSkin(username, customSkin) {
     const url = skinUrl(username, customSkin);
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Boot */
-  fetch("./data.json")
+  fetch("./data.json?" + Date.now())
     .then(r => r.json())
     .then(loadData)
     .catch(() => loadData(defaultData));
