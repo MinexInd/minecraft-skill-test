@@ -256,9 +256,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     dom.modal.hidden = false;
+    dom.modal.style.display = "flex";
     dom.modalClose.focus();
   }
-  function closeModal() { dom.modal.hidden = true; }
+  function closeModal() { dom.modal.hidden = true; dom.modal.style.display = "none"; }
   dom.modalClose.addEventListener("click", closeModal);
   dom.modal.addEventListener("click", e => { if (e.target === dom.modal) closeModal(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !dom.modal.hidden) closeModal(); });
