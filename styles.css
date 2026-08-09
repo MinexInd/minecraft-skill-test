@@ -151,13 +151,13 @@ body {
   position: relative;
   z-index: 2;
   background: var(--panel);
-  border-bottom: 2px solid var(--line-dark);
+  border-bottom: 3px solid var(--line-dark);
 }
 .cat-scroll {
   display: flex;
-  gap: 0.5rem;
+  gap: 0;
   overflow-x: auto;
-  padding: 0.7rem 0;
+  padding: 0;
   scrollbar-width: thin;
 }
 .cat-tab {
@@ -167,18 +167,21 @@ body {
   letter-spacing: 0.3px;
   color: var(--text-dim);
   background: var(--slot);
-  border: 2px solid var(--line-dark);
-  padding: 0.7rem 0.8rem;
+  border: none;
+  border-right: 2px solid var(--line-dark);
+  border-bottom: 3px solid transparent;
+  padding: 1rem 1.2rem;
   cursor: pointer;
   white-space: nowrap;
   text-transform: uppercase;
-  transition: color 0.12s ease, background 0.12s ease, transform 0.08s ease;
+  transition: color 0.12s ease, background 0.12s ease, border-bottom-color 0.12s ease;
 }
-.cat-tab:hover { color: var(--text); transform: translateY(-1px); }
+.cat-tab:last-child { border-right: none; }
+.cat-tab:hover { color: var(--text); background: var(--slot-2); }
 .cat-tab.active {
   color: #0d0f12;
   background: var(--grass);
-  border-color: var(--grass-dk);
+  border-bottom: 3px solid var(--grass-dk);
   text-shadow: none;
 }
 [data-theme="light"] .cat-tab.active { color: #fff; }
