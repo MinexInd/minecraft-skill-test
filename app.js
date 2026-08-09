@@ -249,20 +249,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (p.penance !== null) {
-      dom.modalPenance.hidden = false;
+      dom.modalPenance.classList.add("is-visible");
       dom.modalPenanceVal.textContent = p.penance;
     } else {
-      dom.modalPenance.hidden = true;
+      dom.modalPenance.classList.remove("is-visible");
     }
 
-    dom.modal.hidden = false;
-    dom.modal.style.display = "flex";
+    dom.modal.classList.add("is-open");
     dom.modalClose.focus();
   }
-  function closeModal() { dom.modal.hidden = true; dom.modal.style.display = "none"; }
+  function closeModal() { dom.modal.classList.remove("is-open"); }
   dom.modalClose.addEventListener("click", closeModal);
   dom.modal.addEventListener("click", e => { if (e.target === dom.modal) closeModal(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !dom.modal.hidden) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && dom.modal.classList.contains("is-open")) closeModal(); });
 
   dom.search.addEventListener("input", e => {
     searchQuery = e.target.value;
