@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     });
     players.forEach(p => cacheSkin(p.username, p.skin));
+    renderTabs();
     render();
   }
 
