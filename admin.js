@@ -1,26 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  const SKILLS = ["raw_pvp", "building", "redstone", "ice_boat", "trap_box", "ffa_br"];
-  const PLATFORM_LABEL = { pc: "PC · 1.00x", pojav_kbm: "Pojav KBM · 1.02x", pojav_touch: "Pojav Touch · 1.08x" };
+  const SKILLS = ["raw_pvp", "building", "redstone", "ice_boat", "trap_box", "ffa_br", "parkour", "mlg"];
+  const PLATFORM_LABEL = { pc: "PC · 1.00x", pojav_kbm: "Pojav KBM · 1.015x", pojav_touch: "Pojav Touch · 1.020x" };
   const PLATFORM_CLASS = { pc: "badge-pc", pojav_kbm: "badge-kbm", pojav_touch: "badge-touch" };
   const SKIN_CACHE_KEY = "mst-skin-cache";
 
   const defaultData = [
-    { username: "EnderSlayer", platform: "pc", scores: { raw_pvp: 96, building: 52, redstone: 38, ice_boat: 84, trap_box: 90, ffa_br: 94 }, penance: 1280 },
-    { username: "RedstoneRiot", platform: "pc", scores: { raw_pvp: 41, building: 78, redstone: 99, ice_boat: 55, trap_box: 62, ffa_br: 70 } },
-    { username: "FrostRunner", platform: "pojav_kbm", scores: { raw_pvp: 72, building: 33, redstone: 22, ice_boat: 97, trap_box: 80, ffa_br: 76 }, penance: 640 },
-    { username: "BlockWarden", platform: "pc", scores: { raw_pvp: 58, building: 95, redstone: 71, ice_boat: 40, trap_box: 66, ffa_br: 60 } },
-    { username: "TouchTitan", platform: "pojav_touch", scores: { raw_pvp: 88, building: 61, redstone: 44, ice_boat: 79, trap_box: 85, ffa_br: 91 }, penance: 990 },
-    { username: "NetherNomad", platform: "pojav_kbm", scores: { raw_pvp: 64, building: 70, redstone: 58, ice_boat: 68, trap_box: 73, ffa_br: 81 } },
-    { username: "CreeperCraft", platform: "pc", scores: { raw_pvp: 49, building: 88, redstone: 83, ice_boat: 47, trap_box: 55, ffa_br: 52 } },
-    { username: "SpeedPixel", platform: "pojav_touch", scores: { raw_pvp: 76, building: 28, redstone: 15, ice_boat: 92, trap_box: 71, ffa_br: 83 }, penance: 410 },
-    { username: "DiamondDuke", platform: "pc", scores: { raw_pvp: 91, building: 64, redstone: 49, ice_boat: 73, trap_box: 88, ffa_br: 95 }, penance: 1510 },
-    { username: "LapisLad", platform: "pojav_kbm", scores: { raw_pvp: 53, building: 81, redstone: 90, ice_boat: 44, trap_box: 59, ffa_br: 57 } },
-    { username: "BoatBaron", platform: "pc", scores: { raw_pvp: 67, building: 45, redstone: 31, ice_boat: 99, trap_box: 77, ffa_br: 72 } },
-    { username: "TrapMaster", platform: "pojav_touch", scores: { raw_pvp: 60, building: 54, redstone: 66, ice_boat: 63, trap_box: 96, ffa_br: 78 }, penance: 720 },
-    { username: "QuartzQueen", platform: "pc", scores: { raw_pvp: 44, building: 99, redstone: 76, ice_boat: 36, trap_box: 50, ffa_br: 48 } },
-    { username: "WitherWhip", platform: "pojav_kbm", scores: { raw_pvp: 85, building: 39, redstone: 27, ice_boat: 70, trap_box: 82, ffa_br: 89 }, penance: 870 }
+    { username: "EnderSlayer", platform: "pc", scores: { raw_pvp: 96, building: 52, redstone: 38, ice_boat: 84, trap_box: 90, ffa_br: 94, parkour: 35, mlg: 25 }, penance: 1280 },
+    { username: "RedstoneRiot", platform: "pc", scores: { raw_pvp: 41, building: 78, redstone: 99, ice_boat: 55, trap_box: 62, ffa_br: 70, parkour: 15, mlg: 10 } },
+    { username: "FrostRunner", platform: "pojav_kbm", scores: { raw_pvp: 72, building: 33, redstone: 22, ice_boat: 97, trap_box: 80, ffa_br: 76, parkour: 40, mlg: 20 }, penance: 640 },
+    { username: "BlockWarden", platform: "pc", scores: { raw_pvp: 58, building: 95, redstone: 71, ice_boat: 40, trap_box: 66, ffa_br: 60, parkour: 25, mlg: 15 } },
+    { username: "TouchTitan", platform: "pojav_touch", scores: { raw_pvp: 88, building: 61, redstone: 44, ice_boat: 79, trap_box: 85, ffa_br: 91, parkour: 30, mlg: 20 }, penance: 990 },
+    { username: "NetherNomad", platform: "pojav_kbm", scores: { raw_pvp: 64, building: 70, redstone: 58, ice_boat: 68, trap_box: 73, ffa_br: 81, parkour: 20, mlg: 15 } },
+    { username: "CreeperCraft", platform: "pc", scores: { raw_pvp: 49, building: 88, redstone: 83, ice_boat: 47, trap_box: 55, ffa_br: 52, parkour: 10, mlg: 5 } },
+    { username: "SpeedPixel", platform: "pojav_touch", scores: { raw_pvp: 76, building: 28, redstone: 15, ice_boat: 92, trap_box: 71, ffa_br: 83, parkour: 45, mlg: 30 }, penance: 410 },
+    { username: "DiamondDuke", platform: "pc", scores: { raw_pvp: 91, building: 64, redstone: 49, ice_boat: 73, trap_box: 88, ffa_br: 95, parkour: 35, mlg: 25 }, penance: 1510 },
+    { username: "LapisLad", platform: "pojav_kbm", scores: { raw_pvp: 53, building: 81, redstone: 90, ice_boat: 44, trap_box: 59, ffa_br: 57, parkour: 20, mlg: 10 } },
+    { username: "BoatBaron", platform: "pc", scores: { raw_pvp: 67, building: 45, redstone: 31, ice_boat: 99, trap_box: 77, ffa_br: 72, parkour: 30, mlg: 20 } },
+    { username: "TrapMaster", platform: "pojav_touch", scores: { raw_pvp: 60, building: 54, redstone: 66, ice_boat: 63, trap_box: 96, ffa_br: 78, parkour: 25, mlg: 15 }, penance: 720 },
+    { username: "QuartzQueen", platform: "pc", scores: { raw_pvp: 44, building: 99, redstone: 76, ice_boat: 36, trap_box: 50, ffa_br: 48, parkour: 10, mlg: 5 } },
+    { username: "WitherWhip", platform: "pojav_kbm", scores: { raw_pvp: 85, building: 39, redstone: 27, ice_boat: 70, trap_box: 82, ffa_br: 89, parkour: 35, mlg: 20 }, penance: 870 }
   ];
 
   let players = [];
@@ -185,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
         `<td class="score-cell">${p.scores.ice_boat}</td>` +
         `<td class="score-cell">${p.scores.trap_box}</td>` +
         `<td class="score-cell">${p.scores.ffa_br}</td>` +
+        `<td class="score-cell">${p.scores.parkour}</td>` +
+        `<td class="score-cell">${p.scores.mlg}</td>` +
         `<td class="score-cell">${penStr}</td>` +
         `<td class="actions-cell"><button class="edit" data-i="${i}">EDIT</button><button class="del" data-i="${i}">DEL</button></td>`;
       frag.appendChild(tr);
@@ -258,12 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dom.formTitle.textContent = "ADD PLAYER";
     dom.submitBtn.textContent = "ADD PLAYER";
     dom.cancelBtn.style.display = "none";
-    document.getElementById("f-raw_pvp").value = 0;
-    document.getElementById("f-building").value = 0;
-    document.getElementById("f-redstone").value = 0;
-    document.getElementById("f-ice_boat").value = 0;
-    document.getElementById("f-trap_box").value = 0;
-    document.getElementById("f-ffa_br").value = 0;
+    SKILLS.forEach(s => { document.getElementById("f-" + s).value = 0; });
   }
 
   /* Download */

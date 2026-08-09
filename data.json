@@ -2,210 +2,105 @@
   {
     "username": "EnderSlayer",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 96,
-      "building": 52,
-      "redstone": 38,
-      "ice_boat": 84,
-      "trap_box": 90,
-      "ffa_br": 94
-    },
+    "scores": { "raw_pvp": 96, "building": 52, "redstone": 38, "ice_boat": 84, "trap_box": 90, "ffa_br": 94, "parkour": 35, "mlg": 25 },
     "penance": 1280,
     "skin": ""
   },
   {
     "username": "RedstoneRiot",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 41,
-      "building": 78,
-      "redstone": 99,
-      "ice_boat": 55,
-      "trap_box": 62,
-      "ffa_br": 70
-    },
+    "scores": { "raw_pvp": 41, "building": 78, "redstone": 99, "ice_boat": 55, "trap_box": 62, "ffa_br": 70, "parkour": 15, "mlg": 10 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "FrostRunner",
     "platform": "pojav_kbm",
-    "scores": {
-      "raw_pvp": 72,
-      "building": 33,
-      "redstone": 22,
-      "ice_boat": 97,
-      "trap_box": 80,
-      "ffa_br": 76
-    },
+    "scores": { "raw_pvp": 72, "building": 33, "redstone": 22, "ice_boat": 97, "trap_box": 80, "ffa_br": 76, "parkour": 40, "mlg": 20 },
     "penance": 640,
     "skin": ""
   },
   {
     "username": "BlockWarden",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 58,
-      "building": 95,
-      "redstone": 71,
-      "ice_boat": 40,
-      "trap_box": 66,
-      "ffa_br": 60
-    },
+    "scores": { "raw_pvp": 58, "building": 95, "redstone": 71, "ice_boat": 40, "trap_box": 66, "ffa_br": 60, "parkour": 25, "mlg": 15 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "TouchTitan",
     "platform": "pojav_touch",
-    "scores": {
-      "raw_pvp": 88,
-      "building": 61,
-      "redstone": 44,
-      "ice_boat": 79,
-      "trap_box": 85,
-      "ffa_br": 91
-    },
+    "scores": { "raw_pvp": 88, "building": 61, "redstone": 44, "ice_boat": 79, "trap_box": 85, "ffa_br": 91, "parkour": 30, "mlg": 20 },
     "penance": 990,
     "skin": ""
   },
   {
     "username": "NetherNomad",
     "platform": "pojav_kbm",
-    "scores": {
-      "raw_pvp": 64,
-      "building": 70,
-      "redstone": 58,
-      "ice_boat": 68,
-      "trap_box": 73,
-      "ffa_br": 81
-    },
+    "scores": { "raw_pvp": 64, "building": 70, "redstone": 58, "ice_boat": 68, "trap_box": 73, "ffa_br": 81, "parkour": 20, "mlg": 15 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "CreeperCraft",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 49,
-      "building": 88,
-      "redstone": 83,
-      "ice_boat": 47,
-      "trap_box": 55,
-      "ffa_br": 52
-    },
+    "scores": { "raw_pvp": 49, "building": 88, "redstone": 83, "ice_boat": 47, "trap_box": 55, "ffa_br": 52, "parkour": 10, "mlg": 5 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "SpeedPixel",
     "platform": "pojav_touch",
-    "scores": {
-      "raw_pvp": 76,
-      "building": 28,
-      "redstone": 15,
-      "ice_boat": 92,
-      "trap_box": 71,
-      "ffa_br": 83
-    },
+    "scores": { "raw_pvp": 76, "building": 28, "redstone": 15, "ice_boat": 92, "trap_box": 71, "ffa_br": 83, "parkour": 45, "mlg": 30 },
     "penance": 410,
     "skin": ""
   },
   {
     "username": "DiamondDuke",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 91,
-      "building": 64,
-      "redstone": 49,
-      "ice_boat": 73,
-      "trap_box": 88,
-      "ffa_br": 95
-    },
+    "scores": { "raw_pvp": 91, "building": 64, "redstone": 49, "ice_boat": 73, "trap_box": 88, "ffa_br": 95, "parkour": 35, "mlg": 25 },
     "penance": 1510,
     "skin": ""
   },
   {
     "username": "LapisLad",
     "platform": "pojav_kbm",
-    "scores": {
-      "raw_pvp": 53,
-      "building": 81,
-      "redstone": 90,
-      "ice_boat": 44,
-      "trap_box": 59,
-      "ffa_br": 57
-    },
+    "scores": { "raw_pvp": 53, "building": 81, "redstone": 90, "ice_boat": 44, "trap_box": 59, "ffa_br": 57, "parkour": 20, "mlg": 10 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "BoatBaron",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 67,
-      "building": 45,
-      "redstone": 31,
-      "ice_boat": 99,
-      "trap_box": 77,
-      "ffa_br": 72
-    },
+    "scores": { "raw_pvp": 67, "building": 45, "redstone": 31, "ice_boat": 99, "trap_box": 77, "ffa_br": 72, "parkour": 30, "mlg": 20 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "TrapMaster",
     "platform": "pojav_touch",
-    "scores": {
-      "raw_pvp": 60,
-      "building": 54,
-      "redstone": 66,
-      "ice_boat": 63,
-      "trap_box": 96,
-      "ffa_br": 78
-    },
+    "scores": { "raw_pvp": 60, "building": 54, "redstone": 66, "ice_boat": 63, "trap_box": 96, "ffa_br": 78, "parkour": 25, "mlg": 15 },
     "penance": 720,
     "skin": ""
   },
   {
     "username": "QuartzQueen",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 44,
-      "building": 99,
-      "redstone": 76,
-      "ice_boat": 36,
-      "trap_box": 50,
-      "ffa_br": 48
-    },
+    "scores": { "raw_pvp": 44, "building": 99, "redstone": 76, "ice_boat": 36, "trap_box": 50, "ffa_br": 48, "parkour": 10, "mlg": 5 },
     "penance": null,
     "skin": ""
   },
   {
     "username": "WitherWhip",
     "platform": "pojav_kbm",
-    "scores": {
-      "raw_pvp": 85,
-      "building": 39,
-      "redstone": 27,
-      "ice_boat": 70,
-      "trap_box": 82,
-      "ffa_br": 89
-    },
+    "scores": { "raw_pvp": 85, "building": 39, "redstone": 27, "ice_boat": 70, "trap_box": 82, "ffa_br": 89, "parkour": 35, "mlg": 20 },
     "penance": 870,
     "skin": ""
   },
   {
-    "username": "KhadusGrinder",
+    "username": "MinexInd",
     "platform": "pc",
-    "scores": {
-      "raw_pvp": 100,
-      "building": 100,
-      "redstone": 100,
-      "ice_boat": 100,
-      "trap_box": 100,
-      "ffa_br": 100
-    },
+    "scores": { "raw_pvp": 100, "building": 100, "redstone": 100, "ice_boat": 100, "trap_box": 100, "ffa_br": 100, "parkour": 100, "mlg": 100 },
     "penance": 15000,
     "skin": ""
   }
