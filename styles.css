@@ -367,6 +367,7 @@ body {
   z-index: 50; padding: 1rem;
   animation: fade 0.2s ease both;
 }
+.modal-bg[hidden] { display: none !important; }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 .modal-window {
   width: min(520px, 94vw);
@@ -400,6 +401,7 @@ body {
   background: linear-gradient(180deg, rgba(224,83,61,.18), rgba(224,83,61,.06));
   border: 2px solid var(--danger);
 }
+.penance-row[hidden] { display: none !important; }
 .penance-label { font-family: var(--font-pixel); font-size: 0.6rem; color: var(--danger); }
 .penance-val { font-family: var(--font-pixel); font-size: 1rem; color: var(--text); }
 
