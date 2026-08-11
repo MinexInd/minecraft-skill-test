@@ -204,11 +204,25 @@
       "redstone": 20,
       "ice_boat": 100,
       "trap_box": 100,
+      "ffa_br": 100
+    },
+    "penance": 15000,
+    "skin": ""
+  },
+  {
+    "username": "Best_Ones_Bro",
+    "platform": "pc",
+    "scores": {
+      "raw_pvp": 100,
+      "building": 100,
+      "redstone": 20,
+      "ice_boat": 100,
+      "trap_box": 100,
       "ffa_br": 100,
       "parkour": 100,
       "mlg": 100
     },
-    "penance": 15000,
-    "skin": ""
+    "penance": 20000,
+    "skin": "Abdulazizaxm"
   }
 ]
